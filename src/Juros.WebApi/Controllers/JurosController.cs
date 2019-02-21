@@ -7,6 +7,7 @@ namespace Juros.WebApi.Controllers
     public class JurosController : ControllerBase
     {
         private readonly IJurosServico jurosServico;
+        private const string GIT_URL = "https://github.com/lucianorossi/JurosApi";
 
         public JurosController(IJurosServico jurosServico) =>
             this.jurosServico = jurosServico;
@@ -16,5 +17,10 @@ namespace Juros.WebApi.Controllers
         [Route("calculajuros")]
         public ActionResult<string> Get(decimal valorInicial, int meses) =>
             jurosServico.CalculaJurosCompostos(valorInicial, meses).ToString("F2");
+
+        // GET /showmethecode
+        [HttpGet]
+        [Route("showmethecode")]
+        public ActionResult<string> Code() => GIT_URL;
     }
 }
